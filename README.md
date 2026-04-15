@@ -1,28 +1,75 @@
+<div align="center">
+
+<br/>
+
 # url-shortener
 
 **Shorten URLs. Track clicks. Own your data.**
 
-![Next.js 15](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)
-![TypeScript 5.7](https://img.shields.io/badge/TypeScript-5.7-3178c6?style=flat-square&logo=typescript)
-![SQLite](https://img.shields.io/badge/SQLite-embedded-003b57?style=flat-square&logo=sqlite)
-![Tailwind v4](https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8?style=flat-square&logo=tailwindcss)
-![App Router](https://img.shields.io/badge/App_Router-enabled-000?style=flat-square)
+No sign-up. No cloud. No external services. A fully self-hosted URL shortener with built-in analytics — deploy it anywhere in under 5 minutes.
 
-![ Demo](.github/demo.gif)
+<br/>
 
-A fully self-hosted, zero-configuration URL shortener with built-in click analytics. Paste a long URL, get a clean short link, and track every click — no external services, no sign-up, no cloud.
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js&logoColor=white)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![SQLite](https://img.shields.io/badge/SQLite-embedded-003b57?logo=sqlite&logoColor=white)](https://www.sqlite.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![License MIT](https://img.shields.io/badge/license-MIT-22c55e)](LICENSE)
+
+<br/>
+
+<img src=".github/demo.svg" alt="url-shortener dashboard" width="100%"/>
+
+<br/>
+
+```bash
+git clone https://github.com/mariotavarez/url-shortener.git
+cd url-shortener && npm install && npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) — ready instantly. No database setup. No env vars.
+
+<br/>
+
+</div>
 
 ---
 
-## Features
+## Why this exists
 
-- **Short links** — 6-character nanoid codes, collision-safe
-- **Click tracking** — every redirect increments a click counter
-- **Analytics dashboard** — stats cards + full sortable link table
-- **Copy to clipboard** — one-click copy with visual "Copied!" feedback
-- **Delete links** — remove any short link from the dashboard
-- **Self-hosted** — all data lives in a local SQLite file (`data/data.db`)
-- **Zero setup** — no database server, no env vars, no Docker
+Every URL shortener I tried required an account, an API key, or a database server. This one needs none of that.
+
+Clone it, run `npm run dev`, and you have a working short-link service with analytics in your browser — all backed by a single SQLite file that lives next to the code.
+
+---
+
+## What it does
+
+| Feature | Detail |
+|---|---|
+| **Shorten any URL** | 6-character nanoid codes — collision-safe, URL-safe |
+| **Redirect tracking** | Every click increments a counter — zero overhead via embedded SQLite |
+| **Analytics dashboard** | KPI cards: total links, total clicks, links created today |
+| **Sortable link table** | Sort by date, clicks, or short code — server-rendered, no client state |
+| **Copy to clipboard** | One click to copy — "Copied!" feedback with automatic reset |
+| **Delete links** | Remove any short link from the dashboard instantly |
+| **Auto-prepend https://** | Paste a bare domain and it just works |
+
+---
+
+## How it works
+
+```
+User pastes URL → Server Action validates + generates code via nanoid
+                → better-sqlite3 stores mapping in data/data.db
+
+User visits /x9kT2m → Route Handler looks up code
+                     → Increments click counter (synchronous, fast)
+                     → 302 redirect to original URL
+
+Dashboard        → Server Component reads live SQLite data
+                 → Renders stats + sortable table (no API calls)
+```
 
 ---
 
@@ -35,29 +82,17 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) — that's it. No external services needed.
+Visit `http://localhost:3000`. The SQLite database is created automatically on first run at `data/data.db`.
 
----
+**Type-check:**
+```bash
+npx tsc --noEmit
+```
 
-## How It Works
-
-1. **Shorten** — Enter a URL on the home page. A Server Action validates it, generates a 6-char code via `nanoid`, and persists the mapping in SQLite.
-2. **Redirect** — Visiting `/:code` triggers a Next.js Route Handler (`app/[code]/route.ts`) that looks up the code, increments the click counter, and issues a `302` redirect to the original URL.
-3. **Track** — Every click is stored in the `clicks` column. The dashboard reads live data from the same SQLite database.
-4. **Analyze** — `/dashboard` shows aggregate stats (total links, total clicks, links created today) plus a sortable table of every link.
-
----
-
-## Tech Stack
-
-| Layer | Technology |
-|-------|-----------|
-| Framework | Next.js 15 (App Router, Server Actions) |
-| Language | TypeScript 5.7 (strict) |
-| Styling | Tailwind CSS v4 via `@tailwindcss/postcss` |
-| Database | SQLite via `better-sqlite3` (embedded, file-based) |
-| ID generation | `nanoid` v5 (6-char URL-safe codes) |
-| Icons | `lucide-react` |
+**Production build:**
+```bash
+npm run build && npm start
+```
 
 ---
 
@@ -66,24 +101,37 @@ Open [http://localhost:3000](http://localhost:3000) — that's it. No external s
 ```
 src/
 ├── app/
-│   ├── layout.tsx              # Root layout — dark theme, navbar
-│   ├── page.tsx                # Home: hero + shorten form + recent links
+│   ├── layout.tsx              # Root layout — dark theme, sticky nav
+│   ├── page.tsx                # Home — shorten form + recent links
 │   ├── [code]/route.ts         # Redirect handler + click tracking
 │   └── dashboard/page.tsx      # Analytics dashboard
 ├── components/
-│   ├── ShortenForm.tsx         # Client form with optimistic UI
-│   ├── LinkCard.tsx            # Single link row with copy button
-│   ├── StatsCard.tsx           # KPI card component
-│   ├── LinksTable.tsx          # Sortable full links table
-│   └── CopyButton.tsx          # Clipboard button with feedback
+│   ├── ShortenForm.tsx         # Client form with useTransition
+│   ├── CopyButton.tsx          # Clipboard copy with "Copied!" feedback
+│   ├── LinkCard.tsx            # Compact link row
+│   ├── StatsCard.tsx           # KPI card (violet / purple / fuchsia variants)
+│   └── LinksTable.tsx          # Sortable table with delete
 └── lib/
-    ├── db.ts                   # SQLite singleton + typed queries
-    ├── actions.ts              # Server Actions (shorten, delete, stats)
-    └── utils.ts                # Helpers: generateCode, formatDate, etc.
+    ├── db.ts                   # SQLite singleton — WAL mode, typed queries
+    ├── actions.ts              # Server Actions: shorten, delete, stats, track
+    └── utils.ts                # generateCode, formatDate, isValidUrl, truncate
 ```
+
+---
+
+## Tech Stack
+
+| Layer | Technology | Version |
+|---|---|---|
+| Framework | Next.js App Router + Server Actions | 15 |
+| Language | TypeScript strict mode | 5.7 |
+| Styling | Tailwind CSS via `@tailwindcss/postcss` | v4 |
+| Database | SQLite via `better-sqlite3` (embedded) | 9 |
+| ID generation | `nanoid` (6-char URL-safe codes) | 5 |
+| Icons | `lucide-react` | 0.344 |
 
 ---
 
 ## License
 
-MIT © Mario Tavarez
+MIT © [Mario Tavarez](https://github.com/mariotavarez)

@@ -4,30 +4,19 @@
       <stop offset="0%" stop-color="#7c3aed"/>
       <stop offset="100%" stop-color="#4f46e5"/>
     </linearGradient>
-    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="100%" stop-color="#f8fafc"/>
-    </linearGradient>
-    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
-      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#0000001a"/>
-    </filter>
-    <filter id="shadow-sm" x="-5%" y="-5%" width="110%" height="120%">
-      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#00000012"/>
-    </filter>
+    <filter id="shadow"><feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#0000001a"/></filter>
+    <filter id="shadow-sm"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#00000012"/></filter>
   </defs>
 
   <!-- Browser chrome -->
   <rect width="800" height="480" rx="12" fill="#e8ecf0"/>
-  <!-- Browser titlebar -->
   <rect width="800" height="38" rx="12" fill="#f1f3f5"/>
   <rect y="26" width="800" height="12" fill="#f1f3f5"/>
-  <!-- Traffic lights -->
   <circle cx="20" cy="19" r="6" fill="#ff5f57"/>
   <circle cx="40" cy="19" r="6" fill="#febc2e"/>
   <circle cx="60" cy="19" r="6" fill="#28c840"/>
-  <!-- Address bar -->
   <rect x="160" y="9" width="480" height="20" rx="10" fill="#e2e5e9"/>
-  <text x="400" y="23" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#6b7280" text-anchor="middle">localhost:3000</text>
+  <text x="400" y="23" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="11" fill="#6b7280" text-anchor="middle">localhost:3000</text>
 
   <!-- Page background -->
   <rect y="38" width="800" height="442" fill="#f8fafc"/>
@@ -35,66 +24,85 @@
   <!-- Navbar -->
   <rect y="38" width="800" height="48" fill="white"/>
   <rect y="86" width="800" height="1" fill="#e5e7eb"/>
-  <text x="32" y="68" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700" fill="#1a1a2e">url·shrtnr</text>
-  <text x="140" y="68" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#6b7280">Home</text>
-  <text x="194" y="68" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#6b7280">Dashboard</text>
+  <text x="32" y="68" font-family="-apple-system,sans-serif" font-size="14" font-weight="700" fill="#1a1a2e">url·shrtnr</text>
+  <text x="140" y="68" font-family="-apple-system,sans-serif" font-size="13" fill="#6b7280">Home</text>
+  <text x="194" y="68" font-family="-apple-system,sans-serif" font-size="13" fill="#6b7280">Dashboard</text>
   <rect x="680" y="54" width="88" height="28" rx="14" fill="url(#heroBg)"/>
-  <text x="724" y="72" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="white" text-anchor="middle">Sign in</text>
+  <text x="724" y="72" font-family="-apple-system,sans-serif" font-size="12" font-weight="600" fill="white" text-anchor="middle">Sign in</text>
 
   <!-- Hero section -->
   <rect y="87" width="800" height="130" fill="url(#heroBg)"/>
-  <text x="400" y="125" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" fill="white" text-anchor="middle">Shorten URLs. Track clicks.</text>
-  <text x="400" y="147" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="700" fill="#c4b5fd" text-anchor="middle">Own your data.</text>
-  <text x="400" y="168" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#ddd6fe" text-anchor="middle">Self-hosted. Zero config. SQLite-powered.</text>
+  <text x="400" y="125" font-family="-apple-system,sans-serif" font-size="22" font-weight="700" fill="white" text-anchor="middle">Shorten URLs. Track clicks.</text>
+  <text x="400" y="147" font-family="-apple-system,sans-serif" font-size="22" font-weight="700" fill="#c4b5fd" text-anchor="middle">Own your data.</text>
+  <text x="400" y="168" font-family="-apple-system,sans-serif" font-size="12" fill="#ddd6fe" text-anchor="middle">Self-hosted · SQLite · Zero config · Next.js 15</text>
 
-  <!-- Input card (floating) -->
+  <!-- Input card -->
   <rect x="80" y="185" width="640" height="64" rx="12" fill="white" filter="url(#shadow)"/>
-  <text x="112" y="207" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" fill="#9ca3af">PASTE YOUR LONG URL</text>
+  <text x="112" y="207" font-family="-apple-system,sans-serif" font-size="10" fill="#9ca3af">PASTE YOUR LONG URL</text>
   <rect x="100" y="212" width="456" height="28" rx="6" fill="#f9fafb"/>
   <rect x="100" y="212" width="456" height="28" rx="6" fill="none" stroke="#e5e7eb" stroke-width="1"/>
-  <text x="114" y="230" font-family="'SF Mono', 'Fira Code', monospace" font-size="11" fill="#374151">https://docs.anthropic.com/en/api/getting-started</text>
+
+  <!-- URL text appears (animated) -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;0;1;1;1;0" keyTimes="0;0.12;0.20;0.65;0.88;1" dur="9s" repeatCount="indefinite"/>
+    <text x="114" y="230" font-family="'SF Mono','Fira Code',monospace" font-size="11" fill="#374151">https://docs.anthropic.com/en/api/getting-started</text>
+  </g>
+
   <rect x="564" y="212" width="136" height="28" rx="6" fill="url(#heroBg)"/>
-  <text x="632" y="230" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="white" text-anchor="middle">Shorten URL</text>
+  <text x="632" y="230" font-family="-apple-system,sans-serif" font-size="12" font-weight="600" fill="white" text-anchor="middle">Shorten URL</text>
+  <!-- Button pulse animation -->
+  <rect x="564" y="212" width="136" height="28" rx="6" fill="#7c3aed" opacity="0">
+    <animate attributeName="opacity" values="0;0;0;0.6;0;0" keyTimes="0;0.22;0.28;0.32;0.38;1" dur="9s" repeatCount="indefinite"/>
+  </rect>
 
-  <!-- Result pill -->
-  <rect x="80" y="260" width="640" height="44" rx="8" fill="white" filter="url(#shadow-sm)"/>
-  <rect x="80" y="260" width="4" height="44" rx="2" fill="#7c3aed"/>
-  <text x="104" y="277" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" fill="#6b7280">YOUR SHORT LINK IS READY</text>
-  <text x="104" y="294" font-family="'SF Mono', 'Fira Code', monospace" font-size="13" font-weight="600" fill="#7c3aed">localhost:3000/x9kT2m</text>
-  <rect x="610" y="268" width="80" height="26" rx="5" fill="#f3f0ff"/>
-  <text x="650" y="285" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="#7c3aed" text-anchor="middle">Copy link</text>
+  <!-- Result pill (animates in after "click") -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;0;0;1;1;1;0" keyTimes="0;0.22;0.38;0.44;0.65;0.88;1" dur="9s" repeatCount="indefinite"/>
+    <rect x="80" y="260" width="640" height="44" rx="8" fill="white" filter="url(#shadow-sm)"/>
+    <rect x="80" y="260" width="4" height="44" rx="2" fill="#7c3aed"/>
+    <text x="104" y="277" font-family="-apple-system,sans-serif" font-size="10" fill="#6b7280">YOUR SHORT LINK IS READY</text>
+    <text x="104" y="294" font-family="'SF Mono',monospace" font-size="13" font-weight="600" fill="#7c3aed">localhost:3000/x9kT2m</text>
+    <rect x="610" y="268" width="80" height="26" rx="5" fill="#f3f0ff"/>
+    <text x="650" y="285" font-family="-apple-system,sans-serif" font-size="11" font-weight="600" fill="#7c3aed" text-anchor="middle">Copy link</text>
+  </g>
 
-  <!-- Stats row -->
-  <rect x="80" y="318" width="196" height="72" rx="10" fill="white" filter="url(#shadow-sm)"/>
-  <text x="100" y="340" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#6b7280">Total Links</text>
-  <text x="100" y="368" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="26" font-weight="700" fill="#111827">24</text>
-  <text x="148" y="368" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#10b981">+3 today</text>
+  <!-- Stats row (animates in after result) -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;0;0;0;1;1;0" keyTimes="0;0.22;0.38;0.50;0.56;0.88;1" dur="9s" repeatCount="indefinite"/>
+    <rect x="80" y="318" width="196" height="72" rx="10" fill="white" filter="url(#shadow-sm)"/>
+    <text x="100" y="340" font-family="-apple-system,sans-serif" font-size="11" fill="#6b7280">Total Links</text>
+    <text x="100" y="368" font-family="-apple-system,sans-serif" font-size="26" font-weight="700" fill="#111827">24</text>
+    <text x="148" y="368" font-family="-apple-system,sans-serif" font-size="11" fill="#10b981">+3 today</text>
 
-  <rect x="302" y="318" width="196" height="72" rx="10" fill="white" filter="url(#shadow-sm)"/>
-  <text x="322" y="340" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#6b7280">Total Clicks</text>
-  <text x="322" y="368" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="26" font-weight="700" fill="#111827">1,847</text>
-  <text x="390" y="368" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#10b981">↑ 12%</text>
+    <rect x="302" y="318" width="196" height="72" rx="10" fill="white" filter="url(#shadow-sm)"/>
+    <text x="322" y="340" font-family="-apple-system,sans-serif" font-size="11" fill="#6b7280">Total Clicks</text>
+    <text x="322" y="368" font-family="-apple-system,sans-serif" font-size="26" font-weight="700" fill="#111827">1,847</text>
+    <text x="390" y="368" font-family="-apple-system,sans-serif" font-size="11" fill="#10b981">↑ 12%</text>
 
-  <rect x="524" y="318" width="196" height="72" rx="10" fill="white" filter="url(#shadow-sm)"/>
-  <text x="544" y="340" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#6b7280">Links Today</text>
-  <text x="544" y="368" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="26" font-weight="700" fill="#111827">3</text>
+    <rect x="524" y="318" width="196" height="72" rx="10" fill="white" filter="url(#shadow-sm)"/>
+    <text x="544" y="340" font-family="-apple-system,sans-serif" font-size="11" fill="#6b7280">Links Today</text>
+    <text x="544" y="368" font-family="-apple-system,sans-serif" font-size="26" font-weight="700" fill="#111827">3</text>
+  </g>
 
-  <!-- Table -->
-  <rect x="80" y="404" width="640" height="68" rx="10" fill="white" filter="url(#shadow-sm)"/>
-  <rect x="80" y="404" width="640" height="26" rx="10" fill="#f9fafb"/>
-  <rect x="80" y="420" width="640" height="10" fill="#f9fafb"/>
-  <text x="100" y="421" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#6b7280" letter-spacing="0.5">SHORT LINK</text>
-  <text x="234" y="421" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#6b7280" letter-spacing="0.5">ORIGINAL URL</text>
-  <text x="556" y="421" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#6b7280" letter-spacing="0.5">CLICKS</text>
-  <text x="626" y="421" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#6b7280" letter-spacing="0.5">DATE</text>
-  <line x1="80" y1="430" x2="720" y2="430" stroke="#e5e7eb" stroke-width="1"/>
-  <text x="100" y="446" font-family="'SF Mono', monospace" font-size="11" font-weight="600" fill="#7c3aed">/x9kT2m</text>
-  <text x="234" y="446" font-family="-apple-system, sans-serif" font-size="11" fill="#6b7280">docs.anthropic.com/en/api/getting-s…</text>
-  <text x="562" y="446" font-family="-apple-system, sans-serif" font-size="11" fill="#111827">0</text>
-  <text x="626" y="446" font-family="-apple-system, sans-serif" font-size="11" fill="#9ca3af">just now</text>
-  <line x1="80" y1="452" x2="720" y2="452" stroke="#f3f4f6" stroke-width="1"/>
-  <text x="100" y="464" font-family="'SF Mono', monospace" font-size="11" font-weight="600" fill="#7c3aed">/aB3rZq</text>
-  <text x="234" y="464" font-family="-apple-system, sans-serif" font-size="11" fill="#6b7280">github.com/mariotavarez/react-ai-da…</text>
-  <text x="556" y="464" font-family="-apple-system, sans-serif" font-size="11" fill="#111827">312</text>
-  <text x="626" y="464" font-family="-apple-system, sans-serif" font-size="11" fill="#9ca3af">2 days ago</text>
+  <!-- Table (animates in last) -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;0;0;0;0;1;1;0" keyTimes="0;0.22;0.38;0.50;0.60;0.66;0.88;1" dur="9s" repeatCount="indefinite"/>
+    <rect x="80" y="404" width="640" height="68" rx="10" fill="white" filter="url(#shadow-sm)"/>
+    <rect x="80" y="404" width="640" height="26" rx="10" fill="#f9fafb"/>
+    <rect x="80" y="420" width="640" height="10" fill="#f9fafb"/>
+    <text x="100" y="421" font-family="-apple-system,sans-serif" font-size="10" font-weight="600" fill="#6b7280" letter-spacing="0.5">SHORT LINK</text>
+    <text x="234" y="421" font-family="-apple-system,sans-serif" font-size="10" font-weight="600" fill="#6b7280" letter-spacing="0.5">ORIGINAL URL</text>
+    <text x="556" y="421" font-family="-apple-system,sans-serif" font-size="10" font-weight="600" fill="#6b7280" letter-spacing="0.5">CLICKS</text>
+    <text x="626" y="421" font-family="-apple-system,sans-serif" font-size="10" font-weight="600" fill="#6b7280" letter-spacing="0.5">DATE</text>
+    <line x1="80" y1="430" x2="720" y2="430" stroke="#e5e7eb" stroke-width="1"/>
+    <text x="100" y="446" font-family="'SF Mono',monospace" font-size="11" font-weight="600" fill="#7c3aed">/x9kT2m</text>
+    <text x="234" y="446" font-family="-apple-system,sans-serif" font-size="11" fill="#6b7280">docs.anthropic.com/en/api/getting-s…</text>
+    <text x="562" y="446" font-family="-apple-system,sans-serif" font-size="11" fill="#111827">0</text>
+    <text x="626" y="446" font-family="-apple-system,sans-serif" font-size="11" fill="#9ca3af">just now</text>
+    <line x1="80" y1="452" x2="720" y2="452" stroke="#f3f4f6" stroke-width="1"/>
+    <text x="100" y="464" font-family="'SF Mono',monospace" font-size="11" font-weight="600" fill="#7c3aed">/aB3rZq</text>
+    <text x="234" y="464" font-family="-apple-system,sans-serif" font-size="11" fill="#6b7280">github.com/mariotavarez/react-ai-da…</text>
+    <text x="556" y="464" font-family="-apple-system,sans-serif" font-size="11" fill="#111827">312</text>
+    <text x="626" y="464" font-family="-apple-system,sans-serif" font-size="11" fill="#9ca3af">2 days ago</text>
+  </g>
 </svg>
