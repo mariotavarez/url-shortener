@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="740" height="420" viewBox="0 0 740 420">
+  <defs>
+    <style>
+      .bg { fill: #0f172a; }
+      .card { fill: #1e293b; }
+      .border { fill: none; stroke: #334155; stroke-width: 1; }
+      .header { fill: #6d28d9; }
+      .mono { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; }
+      .sans { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+      .label { fill: #94a3b8; font-size: 11px; }
+      .value { fill: #f1f5f9; font-weight: 600; }
+      .short { fill: #a78bfa; font-weight: 600; }
+      .dim { fill: #64748b; }
+      .green { fill: #34d399; }
+      .badge { fill: #312e81; rx: 4; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="740" height="420" rx="12" class="bg"/>
+
+  <!-- Header bar -->
+  <rect width="740" height="52" rx="12" class="header"/>
+  <rect y="30" width="740" height="22" class="header"/>
+  <text x="24" y="32" class="sans" fill="white" font-size="15" font-weight="700">url-shortener</text>
+  <text x="24" y="46" class="sans" fill="#c4b5fd" font-size="11">Shorten URLs. Track clicks. Own your data.</text>
+  <rect x="600" y="14" width="110" height="24" rx="6" fill="#4c1d95"/>
+  <text x="655" y="30" class="sans" fill="#a78bfa" font-size="11" text-anchor="middle">localhost:3000</text>
+
+  <!-- Shorten form card -->
+  <rect x="20" y="68" width="700" height="72" rx="8" class="card"/>
+  <rect x="20" y="68" width="700" height="72" rx="8" class="border"/>
+  <text x="36" y="87" class="sans label">Paste a long URL</text>
+  <rect x="36" y="93" width="560" height="32" rx="6" fill="#0f172a"/>
+  <rect x="36" y="93" width="560" height="32" rx="6" fill="none" stroke="#4c1d95" stroke-width="1.5"/>
+  <text x="48" y="113" class="mono" fill="#94a3b8" font-size="11">https://docs.anthropic.com/en/docs/build-with-claude/tool-use/overview</text>
+  <rect x="608" y="93" width="96" height="32" rx="6" fill="#6d28d9"/>
+  <text x="656" y="113" class="sans" fill="white" font-size="12" font-weight="600" text-anchor="middle">Shorten</text>
+
+  <!-- Result card -->
+  <rect x="20" y="152" width="700" height="56" rx="8" fill="#1a1035"/>
+  <rect x="20" y="152" width="700" height="56" rx="8" fill="none" stroke="#4c1d95" stroke-width="1.5"/>
+  <text x="36" y="172" class="sans label">Your short link is ready</text>
+  <text x="36" y="194" class="mono short" font-size="13">http://localhost:3000/x9kT2m</text>
+  <rect x="580" y="160" width="64" height="28" rx="6" fill="#312e81"/>
+  <text x="612" y="178" class="sans" fill="#a78bfa" font-size="11" text-anchor="middle">Copy</text>
+  <text x="656" y="178" class="sans green" font-size="11" text-anchor="middle">Copied!</text>
+
+  <!-- Stats row -->
+  <rect x="20" y="222" width="222" height="68" rx="8" class="card"/>
+  <rect x="20" y="222" width="222" height="68" rx="8" class="border"/>
+  <text x="36" y="245" class="sans label">Total Links</text>
+  <text x="36" y="270" class="sans value" font-size="22" fill="#a78bfa">24</text>
+
+  <rect x="254" y="222" width="222" height="68" rx="8" class="card"/>
+  <rect x="254" y="222" width="222" height="68" rx="8" class="border"/>
+  <text x="270" y="245" class="sans label">Total Clicks</text>
+  <text x="270" y="270" class="sans value" font-size="22" fill="#34d399">1,847</text>
+
+  <rect x="488" y="222" width="232" height="68" rx="8" class="card"/>
+  <rect x="488" y="222" width="232" height="68" rx="8" class="border"/>
+  <text x="504" y="245" class="sans label">Created Today</text>
+  <text x="504" y="270" class="sans value" font-size="22" fill="#60a5fa">3</text>
+
+  <!-- Links table -->
+  <rect x="20" y="304" width="700" height="100" rx="8" class="card"/>
+  <rect x="20" y="304" width="700" height="100" rx="8" class="border"/>
+  <text x="36" y="322" class="sans" fill="#94a3b8" font-size="11" font-weight="600">SHORT LINK</text>
+  <text x="200" y="322" class="sans" fill="#94a3b8" font-size="11" font-weight="600">ORIGINAL URL</text>
+  <text x="560" y="322" class="sans" fill="#94a3b8" font-size="11" font-weight="600">CLICKS</text>
+  <text x="630" y="322" class="sans" fill="#94a3b8" font-size="11" font-weight="600">CREATED</text>
+  <line x1="36" y1="328" x2="704" y2="328" stroke="#334155" stroke-width="1"/>
+
+  <text x="36" y="347" class="mono short" font-size="11">/x9kT2m</text>
+  <text x="200" y="347" class="mono dim" font-size="10">docs.anthropic.com/en/docs/build-wi...</text>
+  <text x="566" y="347" class="sans value" font-size="12">0</text>
+  <text x="630" y="347" class="sans dim" font-size="11">just now</text>
+
+  <text x="36" y="366" class="mono short" font-size="11">/aB3rZq</text>
+  <text x="200" y="366" class="mono dim" font-size="10">github.com/mariotavarez/react-ai-da...</text>
+  <text x="566" y="366" class="sans value" font-size="12">312</text>
+  <text x="630" y="366" class="sans dim" font-size="11">2 days ago</text>
+
+  <text x="36" y="385" class="mono short" font-size="11">/mNp8xL</text>
+  <text x="200" y="385" class="mono dim" font-size="10">npmjs.com/package/git-standup</text>
+  <text x="566" y="385" class="sans value" font-size="12">89</text>
+  <text x="630" y="385" class="sans dim" font-size="11">3 days ago</text>
+</svg>
